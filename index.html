@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OVOZPAY AI - Agrobank Digital Hackathon</title>
+    <title>OVOZPAY AI - Agrobank AI500 Hackathon</title>
     <style>
         * {
             margin: 0;
@@ -12,12 +12,14 @@
         }
 
         :root {
-            --primary: #00D9FF;
-            --secondary: #7B68EE;
-            --bg: #FAFAFA;
-            --text: #1A1A1A;
-            --text-light: #666;
+            --primary: #00F0FF;
+            --secondary: #8B5CF6;
+            --accent: #FFD700;
+            --bg: #FEFEFE;
+            --text: #0A0A0A;
+            --text-light: #555;
             --card-bg: #FFFFFF;
+            --border: #E8E8E8;
         }
 
         html {
@@ -40,32 +42,44 @@
 
         section {
             padding: 120px 0;
-        }
-
         h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 300;
+            letter-spacing: -0.04em;
+            line-height: 1;
         }
 
         h2 {
             font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
+            font-weight: 300;
             margin-bottom: 60px;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--primary);
         }
 
         h3 {
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 12px;
+            letter-spacing: -0.01em;
         }
 
         p {
             font-size: 1.125rem;
             color: var(--text-light);
             max-width: 720px;
+            font-weight: 300;
         }
 
         .hero {
@@ -75,66 +89,122 @@
             justify-content: center;
             text-align: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
         }
 
         .hero-content {
             max-width: 900px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
             margin-bottom: 32px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text);
+            font-weight: 200;
+            position: relative;
+        }
+
+        .hero h1::first-letter {
+            color: var(--primary);
+            font-weight: 300;
         }
 
         .hero-subtitle {
             font-size: clamp(1.25rem, 2vw, 1.5rem);
-            color: var(--text);
-            margin-bottom: 16px;
-            font-weight: 500;
+        .ps-icon {
+            width: 48px;
+            height: 48px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
 
-        .hero-desc {
-            font-size: 1.125rem;
-            color: var(--text-light);
-            margin-bottom: 24px;
+        .ps-block:hover .ps-icon {
+            background: var(--primary);
+            transform: rotate(360deg);
+        }   margin-bottom: 32px;
+            font-weight: 300;
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 8px 20px;
-            background: var(--card-bg);
+            padding: 10px 24px;
+            background: transparent;
+            border: 1px solid var(--border);
             border-radius: 50px;
             font-size: 0.875rem;
-            color: var(--text-light);
+            color: var(--text);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            transition: all 0.3s ease;
+        }
+
+        .hero-badge:hover {
+            border-color: var(--primary);
+            background: rgba(0, 240, 255, 0.02);
+        }   color: var(--text-light);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
-        .section-dark {
+        .team-card {
             background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 40px 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .problem-solution {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 60px;
-            margin-top: 60px;
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(0, 240, 255, 0.02);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
         }
 
-        .ps-block h3 {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
+        .team-card:hover::before {
+            width: 100%;
         }
 
-        .ps-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
+        .team-card:hover {
+            border-color: var(--primary);
+            transform: translateX(8px);
+        }
+
+        .team-card > * {
+            position: relative;
+            z-index: 1;
+        }   border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -160,20 +230,23 @@
             left: 0;
             color: var(--primary);
         }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+        .team-links a {
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            font-weight: 400;
         }
 
-        .team-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 40px 32px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
+        .team-links a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }   position: relative;
             overflow: hidden;
         }
 
@@ -214,33 +287,36 @@
         }
 
         .team-skills {
-            font-size: 0.875rem;
-            color: var(--text);
-            background: var(--bg);
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-style: italic;
+        .roadmap-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 48px 32px 32px 32px;
+            position: relative;
+            transition: all 0.3s ease;
         }
 
-        .team-links {
-            display: flex;
-            gap: 12px;
+        .roadmap-card:hover {
+            border-color: var(--primary);
+            background: rgba(0, 240, 255, 0.01);
         }
 
-        .team-links a {
-            padding: 8px 16px;
-            background: var(--bg);
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--text);
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
+        .roadmap-number {
+            position: absolute;
+            top: 16px;
+            left: 32px;
+            font-size: 3rem;
+            font-weight: 100;
+            color: var(--primary);
+            opacity: 0.3;
+            line-height: 1;
+            transition: all 0.3s ease;
         }
 
-        .team-links a:hover {
-            background: var(--primary);
-            color: white;
+        .roadmap-card:hover .roadmap-number {
+            opacity: 1;
+            transform: scale(1.1);
+        }   color: white;
         }
 
         .why-us-content {
@@ -288,9 +364,9 @@
         .roadmap-card {
             background: var(--card-bg);
             border-radius: 16px;
-            padding: 32px 24px;
-            position: relative;
-            transition: transform 0.3s ease;
+        .roadmap-card h3 {
+            margin-top: 48px;
+            color: var(--text);
         }
 
         .roadmap-card:hover {
@@ -352,18 +428,20 @@
             font-size: 1.0625rem;
             position: relative;
             padding-left: 32px;
+        footer {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            color: var(--text);
+            padding: 60px 0;
+            text-align: center;
         }
 
-        .impl-list li:before {
-            content: "•";
-            position: absolute;
-            left: 12px;
-            color: var(--primary);
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        .importance {
+        footer p {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            max-width: 100%;
+            font-weight: 300;
+        }importance {
             background: var(--bg);
         }
 
@@ -399,9 +477,9 @@
                 margin-bottom: 40px;
             }
 
-            .problem-solution,
-            .roadmap {
-                gap: 32px;
+                <p class="hero-subtitle">Ovoz orqali boshqariladigan AI yordamchi: barcha to'lovlaringizni siz uchun topadi, to'ldiradi va tasdiqlaydi.</p>
+                <p class="hero-desc">Keksalar va birinchi marta onlayn to'lov qilayotganlar uchun eng oson yechim.</p>
+                <span class="hero-badge">Agrobank AI500 Hackathon loyihasi</span>
             }
 
             .team-grid {
@@ -448,11 +526,10 @@
                     </h3>
                     <ul>
                         <li>Ovoz bilan boshqariladigan AI yordamchi</li>
-                        <li>Foydalanuvchi shunchaki aytadi: "Soliq to'lashim kerak", "Jarimani to'lab bering", "Internet uchun to'lov qilmoqchiman"</li>
-                        <li>AI kerakli xizmatni topadi, formalarni to'ldiradi, ma'lumotlarni tekshiradi</li>
-                        <li>Oxirida faqat barmoq izi / Face ID yoki SMS kod bilan tasdiqlash</li>
-                        <li>Maksimal soddalik, kamroq bosish, kamroq qo'rquv, ko'proq ishonch</li>
-                    </ul>
+                    <div class="team-skills">Data analysis, survey design, pricing models, UX orqali monetizatsiya</div>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/lazizbek-rahimov-94322729b/" target="_blank">LinkedIn</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -462,11 +539,10 @@
         <div class="container">
             <h2>Jamoa</h2>
             <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-role">Finance & Economics Lead</div>
-                    <h3>Lazizbek Raximov</h3>
-                    <div class="team-desc">
-                        4+ yillik akademik tadqiqot tajribasi (Iqtisodiyot va Moliya). Katta ma'lumotlar bilan ishlash, so'rovlar o'tkazish va foydalanuvchi xatti-harakatlarini tahlil qilish. Juru kompaniyasida ishlagan, UWED talabasi, moliya bozorlarini chuqur tushunadi. Tariflar, komissiyalar va to'lov oqimlarini modellashtirish orqali mahsulotni foydalanuvchi uchun eng qulay qiladi.
+                    <div class="team-skills">Product management, fintech ecosystems, UX flow, stakeholder management</div>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/azizbek-fattoev/" target="_blank">LinkedIn</a>
+                    </div> yillik akademik tadqiqot tajribasi (Iqtisodiyot va Moliya). Katta ma'lumotlar bilan ishlash, so'rovlar o'tkazish va foydalanuvchi xatti-harakatlarini tahlil qilish. Juru kompaniyasida ishlagan, UWED talabasi, moliya bozorlarini chuqur tushunadi. Tariflar, komissiyalar va to'lov oqimlarini modellashtirish orqali mahsulotni foydalanuvchi uchun eng qulay qiladi.
                     </div>
                     <div class="team-skills">Data analysis, survey design, pricing models, UX orqali monetizatsiya</div>
                     <div class="team-links">
@@ -476,10 +552,9 @@
                 </div>
 
                 <div class="team-card" id="azizbek-card">
-                    <div class="team-role">Product Manager & Fintech Lead</div>
-                    <h3>Azizbek Fattoev</h3>
-                    <div class="team-desc">
-                        Uzcard va Alif kabi O'zbekistondagi eng kuchli fintech o'yinchilarida ishlagan tajribali PM. Fintech ekotizimini, to'lov tizimlarini va regulyator talablarini juda yaxshi biladi. Foydalanuvchi flowlarini, to'lov scenariylarini va integratsiyalarni aniq, real hayotga mos qilib loyihalaydi.
+                    <div class="team-skills">AI productization, voice & NLP, MLOps, security-by-design</div>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/mirvohid-azimov-874337256/" target="_blank">LinkedIn</a>
                     </div>
                     <div class="team-skills">Product management, fintech ecosystems, UX flow, stakeholder management</div>
                     <div class="team-links">
@@ -574,11 +649,11 @@
                     <ul class="impl-list">
                         <li>Ovozli buyruqlarni tushunadigan, kontektni eslab qoladigan AI yordamchi</li>
                         <li>Foydalanuvchi xatti-harakatini tahlil qilib, interfeysni soddalashtirishga yordam beradigan analitika</li>
-                    </ul>
-                </div>
-            </div>
+    <footer>
+        <div class="container">
+            <p>Agrobank AI500 Hackathon uchun tayyorlangan konsept loyihasi. Jamoa: Lazizbek Raximov, Azizbek Fattoev, Azimov Mirvohid.</p>
         </div>
-    </section>
+    </footer>>
 
     <section class="importance">
         <div class="container">
