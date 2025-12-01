@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVOZPAY AI - Agrobank Digital Hackathon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00D9FF;
+            --secondary: #7B68EE;
+            --bg: #FAFAFA;
+            --text: #1A1A1A;
+            --text-light: #666;
+            --card-bg: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 120px 0;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 60px;
+            letter-spacing: -0.02em;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 720px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            color: var(--text);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .hero-desc {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--card-bg);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-dark {
+            background: var(--card-bg);
+        }
+
+        .problem-solution {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .ps-block h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .ps-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .ps-block ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .ps-block li {
+            padding: 12px 0;
+            color: var(--text-light);
+            font-size: 1.0625rem;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .ps-block li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .team-card h3 {
+            color: var(--text);
+            font-size: 1.5rem;
+        }
+
+        .team-role {
+            color: var(--primary);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .team-desc {
+            font-size: 0.9375rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .team-skills {
+            font-size: 0.875rem;
+            color: var(--text);
+            background: var(--bg);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .team-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .team-links a {
+            padding: 8px 16px;
+            background: var(--bg);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .team-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .why-us-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .why-us-content p {
+            margin-bottom: 24px;
+            font-size: 1.125rem;
+        }
+
+        .easter-egg {
+            margin-top: 40px;
+            padding: 24px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .easter-egg-text {
+            font-size: 1rem;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .easter-egg.active .easter-egg-text {
+            color: var(--primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .roadmap-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 32px 24px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .roadmap-number {
+            position: absolute;
+            top: -16px;
+            left: 24px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .roadmap-card h3 {
+            margin-top: 24px;
+            color: var(--text);
+        }
+
+        .roadmap-card p {
+            font-size: 0.9375rem;
+            margin-top: 12px;
+        }
+
+        .implementation {
+            background: var(--card-bg);
+        }
+
+        .impl-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .impl-section {
+            margin-bottom: 40px;
+        }
+
+        .impl-section h3 {
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .impl-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .impl-list li {
+            padding: 12px 0;
+            color: var(--text-light);
+            font-size: 1.0625rem;
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .impl-list li:before {
+            content: "•";
+            position: absolute;
+            left: 12px;
+            color: var(--primary);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .importance {
+            background: var(--bg);
+        }
+
+        .importance-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .importance-content p {
+            margin-bottom: 24px;
+            font-size: 1.125rem;
+        }
+
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9375rem;
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+
+            h2 {
+                margin-bottom: 40px;
+            }
+
+            .problem-solution,
+            .roadmap {
+                gap: 32px;
+            }
+
+            .team-grid {
+                gap: 32px;
+            }
+
+            .hero {
+                min-height: 90vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>OVOZPAY AI</h1>
+                <p class="hero-subtitle">Ovoz orqali boshqariladigan AI yordamchi: barcha to'lovlaringizni siz uchun topadi, to'ldiradi va tasdiqlaydi.</p>
+                <p class="hero-desc">Keksalar va birinchi marta onlayn to'lov qilayotganlar uchun eng oson yechim.</p>
+                <span class="hero-badge">Agrobank Digital Hackathon loyihasi</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark">
+        <div class="container">
+            <h2>Muammo → Yechim</h2>
+            <div class="problem-solution">
+                <div class="ps-block">
+                    <h3>
+                        <span class="ps-icon">⚠️</span>
+                        Muammo
+                    </h3>
+                    <ul>
+                        <li>Online to'lovlar, soliqlar, davlat bojlari va xizmatlar uchun kerakli servisni topish juda qiyin</li>
+                        <li>Ko'p bo'limlar, tushunarsiz interfeyslar, byurokratik til</li>
+                        <li>Keksalar va birinchi marta to'layotganlar uchun qo'rqinchli va chalkash jarayon</li>
+                    </ul>
+                </div>
+                <div class="ps-block">
+                    <h3>
+                        <span class="ps-icon">✓</span>
+                        Yechim
+                    </h3>
+                    <ul>
+                        <li>Ovoz bilan boshqariladigan AI yordamchi</li>
+                        <li>Foydalanuvchi shunchaki aytadi: "Soliq to'lashim kerak", "Jarimani to'lab bering", "Internet uchun to'lov qilmoqchiman"</li>
+                        <li>AI kerakli xizmatni topadi, formalarni to'ldiradi, ma'lumotlarni tekshiradi</li>
+                        <li>Oxirida faqat barmoq izi / Face ID yoki SMS kod bilan tasdiqlash</li>
+                        <li>Maksimal soddalik, kamroq bosish, kamroq qo'rquv, ko'proq ishonch</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Jamoa</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-role">Finance & Economics Lead</div>
+                    <h3>Lazizbek Raximov</h3>
+                    <div class="team-desc">
+                        4+ yillik akademik tadqiqot tajribasi (Iqtisodiyot va Moliya). Katta ma'lumotlar bilan ishlash, so'rovlar o'tkazish va foydalanuvchi xatti-harakatlarini tahlil qilish. Juru kompaniyasida ishlagan, UWED talabasi, moliya bozorlarini chuqur tushunadi. Tariflar, komissiyalar va to'lov oqimlarini modellashtirish orqali mahsulotni foydalanuvchi uchun eng qulay qiladi.
+                    </div>
+                    <div class="team-skills">Data analysis, survey design, pricing models, UX orqali monetizatsiya</div>
+                    <div class="team-links">
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Telegram</a>
+                    </div>
+                </div>
+
+                <div class="team-card" id="azizbek-card">
+                    <div class="team-role">Product Manager & Fintech Lead</div>
+                    <h3>Azizbek Fattoev</h3>
+                    <div class="team-desc">
+                        Uzcard va Alif kabi O'zbekistondagi eng kuchli fintech o'yinchilarida ishlagan tajribali PM. Fintech ekotizimini, to'lov tizimlarini va regulyator talablarini juda yaxshi biladi. Foydalanuvchi flowlarini, to'lov scenariylarini va integratsiyalarni aniq, real hayotga mos qilib loyihalaydi.
+                    </div>
+                    <div class="team-skills">Product management, fintech ecosystems, UX flow, stakeholder management</div>
+                    <div class="team-links">
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Telegram</a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-role">AI Engineer & Technical Lead</div>
+                    <h3>Azimov Mirvohid</h3>
+                    <div class="team-desc">
+                        Xalqaro kompaniya Nomad'da AI engineer bo'lib ishlagan, hozirda UWED'da AI engineer sifatida faoliyat yuritadi. Germaniya va Shveysariyada AI va fintech AI bo'yicha ilmiy tadqiqotlar o'tkazgan. Ovoz tanish, tabiiy tilni tushunish (NLP) va xavfsiz to'lov AI agentlari bo'yicha kuchli tajribaga ega.
+                    </div>
+                    <div class="team-skills">AI productization, voice & NLP, MLOps, security-by-design</div>
+                    <div class="team-links">
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Telegram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark">
+        <div class="container">
+            <h2>Nega aynan biz?</h2>
+            <div class="why-us-content">
+                <p>Lazizbek → raqamlar va foydalanuvchi xulqini tahlil qilib, moliyaviy model va tariflarni to'g'ri tanlaydi. U mahsulot iqtisodiyotini optimal qiladi va foydalanuvchi uchun eng qulay tariflarni ishlab chiqadi.</p>
+                <p>Azizbek → fintech bozorini, bank infratuzilmasini va real sektor talablarini biladi, productni hayotga yaqin qiladi. Uning Uzcard va Alif'dagi tajribasi loyihani amaliy va ishonchli qiladi.</p>
+                <p>Mirvohid → AI arxitekturasini, ovoz va til modellarini, hamda xavfsiz to'lov jarayonini ishlab chiqadi. Uning xalqaro tajribasi loyihaga yuqori texnologik sifat beradi.</p>
+                <p>Jamoa O'zbekiston bozorining realiyalarini, foydalanuvchi xatti-harakatlarini va mahalliy to'lov ekotizimlarini (Uzcard, Humo, Agrobank) chuqur tushunadi. Agrobank ekotizimi bilan integratsiya qilish orqali, biz bankning mavjud raqamli infratuzilmasini yanada samarali ishlatishni ko'zlaymiz.</p>
+                <div class="easter-egg" id="easter-egg">
+                    <div class="easter-egg-text" id="easter-text">Nega bu loyihani aynan biz qilamiz? Chunki bizda to'liq ko'nikma to'plami, mahalliy bozor bilimlari va xalqaro tajriba birlashgan.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Yo'l xaritasi</h2>
+            <div class="roadmap">
+                <div class="roadmap-card">
+                    <div class="roadmap-number">1</div>
+                    <h3>Idea</h3>
+                    <p>Foydalanuvchi muammolarini aniqlash, bozor tahlili, keksalar va yangi foydalanuvchilar bilan intervyular.</p>
+                </div>
+                <div class="roadmap-card">
+                    <div class="roadmap-number">2</div>
+                    <h3>Prototype</h3>
+                    <p>Ovozdan matnga konversiya + niyat (intent) aniqlash, faqat bir nechta asosiy to'lov scenariylari uchun. Figma/klikatel prototiplar va kichik fokus-guruh bilan test.</p>
+                </div>
+                <div class="roadmap-card">
+                    <div class="roadmap-number">3</div>
+                    <h3>MVP</h3>
+                    <p>Agrobank va asosiy to'lov provayderlari bilan integratsiya. Mobil va veb interfeys, keksalar uchun yirik elementlar, oddiy onboarding.</p>
+                </div>
+                <div class="roadmap-card">
+                    <div class="roadmap-number">4</div>
+                    <h3>Launched</h3>
+                    <p>Pilot loyihani Agrobank ekotizimida ishga tushirish. Foydalanuvchi fikr-mulohazalari asosida iteratsiya, yangi xizmat turlari qo'shish, boshqa bank va xizmatlarga kengaytirish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="implementation">
+        <div class="container">
+            <h2>Qanday amalga oshiramiz?</h2>
+            <div class="impl-content">
+                <div class="impl-section">
+                    <h3>Etaplar</h3>
+                    <ul class="impl-list">
+                        <li>1-bosqich: foydalanuvchi tadqiqoti, savollar va ovozli buyruqlarni xaritalash</li>
+                        <li>2-bosqich: ovozdan matnga va matndan niyatni aniqlash uchun AI modellarini tanlash va moslashtirish (Uzbek tilini qo'llab-quvvatlashga alohida e'tibor)</li>
+                        <li>3-bosqich: Agrobank va boshqa to'lov servislarining API'lari bilan xavfsiz integratsiya</li>
+                        <li>4-bosqich: UX soddalashtirish, beta-test, keksalar bilan sinov</li>
+                        <li>5-bosqich: xavfsizlik, fraud-detection va komplayens tekshiruvlari</li>
+                    </ul>
+                </div>
+                <div class="impl-section">
+                    <h3>Texnologiyalar</h3>
+                    <ul class="impl-list">
+                        <li>Ovoz tanish va tabiiy tilni tushunish (AI)</li>
+                        <li>To'lov servislariga xavfsiz ulanish</li>
+                        <li>Biometrik yoki SMS tasdiqlash orqali yakuniy approval</li>
+                    </ul>
+                </div>
+                <div class="impl-section">
+                    <h3>AI vositalari</h3>
+                    <ul class="impl-list">
+                        <li>Ovozli buyruqlarni tushunadigan, kontektni eslab qoladigan AI yordamchi</li>
+                        <li>Foydalanuvchi xatti-harakatini tahlil qilib, interfeysni soddalashtirishga yordam beradigan analitika</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="importance">
+        <div class="container">
+            <h2>Nega bu loyiha muhim?</h2>
+            <div class="importance-content">
+                <p>Raqamli to'lovlar tez rivojlanmoqda, lekin ko'plab odamlar (ayniqsa keksalar) hali ham oflayn navbatlarga majbur. Ular onlayn interfeyslarda adashib qolishadi, xato qilishdan qo'rqishadi va natijada vaqt va energiya yo'qotishadi.</p>
+                <p>Ovozli AI yordamchi raqamli moliyani hamma uchun ochiq va tushunarli qiladi. Texnologiya orqali to'lovlar oson, xavfsiz va ishonchli bo'ladi. Bu nafaqat foydalanuvchilarni qutqaradi, balki butun raqamli ekotizimni yanada samarali qiladi.</p>
+                <p>Agrobank kabi yetakchi banklar bilan hamkorlik bu yechimni tezroq va ishonchli qilib, butun ekotizimga foyda keltiradi. Agrobank O'zbekistonda raqamli moliya va innovatsiyalarni rivojlantirishda eng oldinda turgan bankdir, va bu loyiha uning missiyasiga to'liq mos keladi.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Agrobank Digital Hackathon uchun tayyorlangan konsept loyihasi. Jamoa: Lazizbek Raximov, Azizbek Fattoev, Azimov Mirvohid.</p>
+        </div>
+    </footer>
+
+    <script>
+        const azizbekCard = document.getElementById('azizbek-card');
+        const easterEgg = document.getElementById('easter-egg');
+        const easterText = document.getElementById('easter-text');
+        const defaultText = 'Nega bu loyihani aynan biz qilamiz? Chunki bizda to\'liq ko\'nikma to\'plami, mahalliy bozor bilimlari va xalqaro tajriba birlashgan.';
+        const funText = 'Chunki u o\'zbek 😄';
+
+        azizbekCard.addEventListener('mouseenter', () => {
+            easterEgg.classList.add('active');
+            easterText.textContent = funText;
+        });
+
+        azizbekCard.addEventListener('mouseleave', () => {
+            easterEgg.classList.remove('active');
+            easterText.textContent = defaultText;
+        });
+    </script>
+</body>
+</html>
