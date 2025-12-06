@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/demo",
+      "destination": "https://apex-fin-demo.vercel.app/"
+    },
+    {
+      "source": "/demo/:path*",
+      "destination": "https://apex-fin-demo.vercel.app/:path*"
+    }
+  ]
+}
