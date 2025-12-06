@@ -680,6 +680,48 @@
             font-weight: 300;
         }
 
+        .lang-toggle {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+            background: rgba(15, 15, 26, 0.9);
+            border: 1px solid var(--border);
+            padding: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .lang-btn.active {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        [data-lang="en"] { display: none; }
+        body.lang-en [data-lang="uz"] { display: none; }
+        body.lang-en [data-lang="en"] { display: block; }
+        body.lang-en [data-lang="en"].inline { display: inline-block; }
+
         @media (max-width: 1200px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -735,28 +777,38 @@
 </head>
 <body>
     <div class="grid-bg"></div>
+    
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang-btn="uz">UZ</button>
+        <button class="lang-btn" data-lang-btn="en">EN</button>
+    </div>
 
     <section class="hero">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-left">
                     <h1>OVOZPAY<br>AI</h1>
-                    <p class="hero-subtitle">Ovoz orqali boshqariladigan AI yordamchi: barcha to'lovlaringizni siz uchun topadi, to'ldiradi va tasdiqlaydi.</p>
-                    <p class="hero-desc">Keksalar va birinchi marta onlayn to'lov qilayotganlar uchun eng oson yechim.</p>
+                    <p class="hero-subtitle" data-lang="uz">Ovoz orqali boshqariladigan AI yordamchi: barcha to'lovlaringizni siz uchun topadi, to'ldiradi va tasdiqlaydi.</p>
+                    <p class="hero-subtitle" data-lang="en">Voice-controlled AI assistant: finds, fills, and confirms all your payments for you.</p>
+                    <p class="hero-desc" data-lang="uz">Keksalar va birinchi marta onlayn to'lov qilayotganlar uchun eng oson yechim.</p>
+                    <p class="hero-desc" data-lang="en">The easiest solution for elderly people and first-time online payment users.</p>
                     <span class="hero-badge">Agrobank AI500 Hackathon</span>
                 </div>
                 <div class="hero-visual">
                     <div class="floating-card">
                         <div class="card-icon">🎤</div>
-                        <div class="card-text">Ovoz bilan<br>boshqarish</div>
+                        <div class="card-text" data-lang="uz">Ovoz bilan<br>boshqarish</div>
+                        <div class="card-text" data-lang="en">Voice<br>Control</div>
                     </div>
                     <div class="floating-card">
                         <div class="card-icon">🤖</div>
-                        <div class="card-text">AI-powered<br>yordamchi</div>
+                        <div class="card-text" data-lang="uz">AI-powered<br>yordamchi</div>
+                        <div class="card-text" data-lang="en">AI-powered<br>Assistant</div>
                     </div>
                     <div class="floating-card">
                         <div class="card-icon">⚡</div>
-                        <div class="card-text">Tez va<br>xavfsiz</div>
+                        <div class="card-text" data-lang="uz">Tez va<br>xavfsiz</div>
+                        <div class="card-text" data-lang="en">Fast &<br>Secure</div>
                     </div>
                 </div>
             </div>
@@ -765,30 +817,41 @@
 
     <section class="section-dark">
         <div class="container">
-            <h2>Muammo → Yechim</h2>
+            <h2 data-lang="uz">Muammo → Yechim</h2>
+            <h2 data-lang="en">Problem → Solution</h2>
             <div class="problem-solution">
                 <div class="ps-block">
                     <h3>
                         <span class="ps-icon">⚠️</span>
-                        Muammo
+                        <span data-lang="uz">Muammo</span>
+                        <span data-lang="en">Problem</span>
                     </h3>
                     <ul>
-                        <li>Online to'lovlar, soliqlar, davlat bojlari va xizmatlar uchun kerakli servisni topish juda qiyin</li>
-                        <li>Ko'p bo'limlar, tushunarsiz interfeyslar, byurokratik til</li>
-                        <li>Keksalar va birinchi marta to'layotganlar uchun qo'rqinchli va chalkash jarayon</li>
+                        <li data-lang="uz">Onlayn to'lovlar, soliqlar, davlat bojlari va xizmatlar uchun kerakli servisni topish juda qiyin</li>
+                        <li data-lang="en">Finding the right service for online payments, taxes, government fees and services is very difficult</li>
+                        <li data-lang="uz">Ko'p bo'limlar, tushunarsiz interfeyslar, byurokratik til</li>
+                        <li data-lang="en">Multiple sections, confusing interfaces, bureaucratic language</li>
+                        <li data-lang="uz">Keksalar va birinchi marta to'layotganlar uchun qo'rqinchli va chalkash jarayon</li>
+                        <li data-lang="en">A scary and confusing process for the elderly and first-time payers</li>
                     </ul>
                 </div>
                 <div class="ps-block">
                     <h3>
                         <span class="ps-icon">✓</span>
-                        Yechim
+                        <span data-lang="uz">Yechim</span>
+                        <span data-lang="en">Solution</span>
                     </h3>
                     <ul>
-                        <li>Ovoz bilan boshqariladigan AI yordamchi</li>
-                        <li>Foydalanuvchi shunchaki aytadi: "Soliq to'lashim kerak", "Jarimani to'lab bering", "Internet uchun to'lov qilmoqchiman"</li>
-                        <li>AI kerakli xizmatni topadi, formalarni to'ldiradi, ma'lumotlarni tekshiradi</li>
-                        <li>Oxirida faqat barmoq izi / Face ID yoki SMS kod bilan tasdiqlash</li>
-                        <li>Maksimal soddalik, kamroq bosish, kamroq qo'rquv, ko'proq ishonch</li>
+                        <li data-lang="uz">Ovoz bilan boshqariladigan AI yordamchi</li>
+                        <li data-lang="en">Voice-controlled AI assistant</li>
+                        <li data-lang="uz">Foydalanuvchi shunchaki aytadi: "Soliq to'lashim kerak", "Jarimani to'lash", "Internet uchun to'lov qilmoqchiman"</li>
+                        <li data-lang="en">User simply says: "I need to pay taxes", "Pay my fine", "I want to pay for internet"</li>
+                        <li data-lang="uz">AI kerakli xizmatni topadi, formalarni to'ldiradi, ma'lumotlarni tekshiradi</li>
+                        <li data-lang="en">AI finds the required service, fills out forms, verifies information</li>
+                        <li data-lang="uz">Oxirida faqat barmoq izi / Face ID yoki SMS kod bilan tasdiqlash</li>
+                        <li data-lang="en">Finally, just confirm with fingerprint / Face ID or SMS code</li>
+                        <li data-lang="uz">Maksimal soddalik, kamroq bosish, kamroq qo'rquv, ko'proq ishonch</li>
+                        <li data-lang="en">Maximum simplicity, fewer clicks, less fear, more confidence</li>
                     </ul>
                 </div>
             </div>
@@ -797,13 +860,17 @@
 
     <section>
         <div class="container">
-            <h2>Jamoa</h2>
+            <h2 data-lang="uz">Jamoa</h2>
+            <h2 data-lang="en">Team</h2>
             <div class="team-grid">
                 <div class="team-card">
                     <div class="team-role">Finance & Economics Lead</div>
                     <h3>Lazizbek Raximov</h3>
-                    <div class="team-desc">
+                    <div class="team-desc" data-lang="uz">
                         4+ yillik akademik tadqiqot tajribasi (Iqtisodiyot va Moliya). Katta ma'lumotlar bilan ishlash, so'rovlar o'tkazish va foydalanuvchi xatti-harakatlarini tahlil qilish. Juru kompaniyasida ishlagan, UWED talabasi, moliya bozorlarini chuqur tushunadi. Tariflar, komissiyalar va to'lov oqimlarini modellashtirish orqali mahsulotni foydalanuvchi uchun eng qulay qiladi.
+                    </div>
+                    <div class="team-desc" data-lang="en">
+                        4+ years of academic research experience (Economics and Finance). Working with big data, conducting surveys, and analyzing user behavior. Worked at Juru company, UWED student, deeply understands financial markets. Makes the product most convenient for users by modeling tariffs, commissions, and payment flows.
                     </div>
                     <div class="team-skills">Data analysis, survey design, pricing models, UX orqali monetizatsiya</div>
                     <div class="team-links">
@@ -814,8 +881,11 @@
                 <div class="team-card" id="azizbek-card">
                     <div class="team-role">Product Manager & Fintech Lead</div>
                     <h3>Azizbek Fattoev</h3>
-                    <div class="team-desc">
-                        Uzcard va Alif kabi O'zbekistondagi eng kuchli fintech o'yinchilarida ishlagan tajribali PM. Fintech ekotizimini, to'lov tizimlarini va regulyator talablarini juda yaxshi biladi. Foydalanuvchi flowlarini, to'lov scenariylarini va integratsiyalarni aniq, real hayotga mos qilib loyihalaydi.
+                    <div class="team-desc" data-lang="uz">
+                        Uzcard va Alif kabi O'zbekistondagi eng kuchli fintech o'yinchilarida ishlagan tajribali PM. Fintech ekotizimini, to'lov tizimlarini va regulyator talablarini juda yaxshi biladi. Foydalanuvchi oqimlarini, to'lov stsenariylarini va integratsiyalarni aniq, real hayotga mos qilib loyihalaydi.
+                    </div>
+                    <div class="team-desc" data-lang="en">
+                        Experienced PM who worked at Uzbekistan's strongest fintech players like Uzcard and Alif. Knows the fintech ecosystem, payment systems and regulatory requirements very well. Designs user flows, payment scenarios and integrations precisely, matching real life.
                     </div>
                     <div class="team-skills">Product management, fintech ecosystems, UX flow, stakeholder management</div>
                     <div class="team-links">
@@ -826,8 +896,11 @@
                 <div class="team-card">
                     <div class="team-role">AI Engineer & Technical Lead</div>
                     <h3>Azimov Mirvohid</h3>
-                    <div class="team-desc">
-                        Xalqaro kompaniya Nomad'da AI engineer bo'lib ishlagan, hozirda UWED'da AI engineer sifatida faoliyat yuritadi. Germaniya va Shveysariyada AI va fintech AI bo'yicha ilmiy tadqiqotlar o'tkazgan. Ovoz tanish, tabiiy tilni tushunish (NLP) va xavfsiz to'lov AI agentlari bo'yicha kuchli tajribaga ega.
+                    <div class="team-desc" data-lang="uz">
+                        Xalqaro kompaniya Nomad'da AI engineer bo'lib ishlagan, hozirda UWED'da AI engineer sifatida faoliyat yuritadi. Germaniya va Shveytsariyada AI va fintech AI bo'yicha ilmiy tadqiqotlar o'tkazgan. Ovozni tanish, tabiiy tilni tushunish (NLP) va xavfsiz to'lov AI agentlari bo'yicha kuchli tajribaga ega.
+                    </div>
+                    <div class="team-desc" data-lang="en">
+                        Worked as an AI engineer at international company Nomad, currently working as an AI engineer at UWED. Conducted scientific research on AI and fintech AI in Germany and Switzerland. Has strong experience in voice recognition, natural language understanding (NLP) and secure payment AI agents.
                     </div>
                     <div class="team-skills">AI productization, voice & NLP, MLOps, security-by-design</div>
                     <div class="team-links">
@@ -840,14 +913,20 @@
 
     <section class="section-dark">
         <div class="container">
-            <h2>Nega aynan biz?</h2>
+            <h2 data-lang="uz">Nega aynan biz?</h2>
+            <h2 data-lang="en">Why Us?</h2>
             <div class="why-us-content">
-                <p>Lazizbek → raqamlar va foydalanuvchi xulqini tahlil qilib, moliyaviy model va tariflarni to'g'ri tanlaydi. U mahsulot iqtisodiyotini optimal qiladi va foydalanuvchi uchun eng qulay tariflarni ishlab chiqadi.</p>
-                <p>Azizbek → fintech bozorini, bank infratuzilmasini va real sektor talablarini biladi, productni hayotga yaqin qiladi. Uning Uzcard va Alif'dagi tajribasi loyihani amaliy va ishonchli qiladi.</p>
-                <p>Mirvohid → AI arxitekturasini, ovoz va til modellarini, hamda xavfsiz to'lov jarayonini ishlab chiqadi. Uning xalqaro tajribasi loyihaga yuqori texnologik sifat beradi.</p>
-                <p>Jamoa O'zbekiston bozorining realiyalarini, foydalanuvchi xatti-harakatlarini va mahalliy to'lov ekotizimlarini (Uzcard, Humo, Agrobank) chuqur tushunadi. Agrobank ekotizimi bilan integratsiya qilish orqali, biz bankning mavjud raqamli infratuzilmasini yanada samarali ishlatishni ko'zlaymiz.</p>
+                <p data-lang="uz">Lazizbek → raqamlar va foydalanuvchi xulqini tahlil qilib, moliyaviy model va tariflarni to'g'ri tanlaydi. U mahsulot iqtisodiyotini optimal qiladi va foydalanuvchi uchun eng qulay tariflarni ishlab chiqadi.</p>
+                <p data-lang="en">Lazizbek → analyzes numbers and user behavior to choose the right financial models and tariffs. He optimizes product economics and develops the most convenient tariffs for users.</p>
+                <p data-lang="uz">Azizbek → fintech bozorini, bank infratuzilmasini va real sektor talablarini biladi, mahsulotni hayotga yaqin qiladi. Uning Uzcard va Alif'dagi tajribasi loyihani amaliy va ishonchli qiladi.</p>
+                <p data-lang="en">Azizbek → knows the fintech market, banking infrastructure and real sector requirements, makes the product close to life. His experience at Uzcard and Alif makes the project practical and reliable.</p>
+                <p data-lang="uz">Mirvohid → AI arxitekturasini, ovoz va til modellarini, hamda xavfsiz to'lov jarayonini ishlab chiqadi. Uning xalqaro tajribasi loyihaga yuqori texnologik sifat beradi.</p>
+                <p data-lang="en">Mirvohid → develops AI architecture, voice and language models, and secure payment processes. His international experience brings high technological quality to the project.</p>
+                <p data-lang="uz">Jamoa O'zbekiston bozorining realiyalarini, foydalanuvchi xatti-harakatlarini va mahalliy to'lov ekotizimlarini (Uzcard, Humo, Agrobank) chuqur tushunadi. Agrobank ekotizimi bilan integratsiya qilish orqali, biz bankning mavjud raqamli infratuzilmasini yanada samarali ishlatishni ko'zlaymiz.</p>
+                <p data-lang="en">The team deeply understands the realities of the Uzbekistan market, user behavior, and local payment ecosystems (Uzcard, Humo, Agrobank). By integrating with Agrobank's ecosystem, we aim to use the bank's existing digital infrastructure more efficiently.</p>
                 <div class="easter-egg" id="easter-egg">
-                    <div class="easter-egg-text" id="easter-text">Nega bu loyihani aynan biz qilamiz? Chunki bizda to'liq ko'nikma to'plami, mahalliy bozor bilimlari va xalqaro tajriba birlashgan.</div>
+                    <div class="easter-egg-text" id="easter-text" data-lang="uz">Nega bu loyihani aynan biz qilamiz? Chunki bizda to'liq ko'nikma to'plami, mahalliy bozor bilimlari va xalqaro tajriba birlashgan.</div>
+                    <div class="easter-egg-text" id="easter-text-en" data-lang="en" style="display: none;">Why are we doing this project? Because we combine a complete skill set, local market knowledge and international experience.</div>
                 </div>
             </div>
         </div>
@@ -855,27 +934,32 @@
 
     <section>
         <div class="container">
-            <h2>Yo'l xaritasi</h2>
+            <h2 data-lang="uz">Yo'l xaritasi</h2>
+            <h2 data-lang="en">Roadmap</h2>
             <div class="roadmap">
                 <div class="roadmap-card">
                     <div class="roadmap-number">1</div>
                     <h3>Idea</h3>
-                    <p>Foydalanuvchi muammolarini aniqlash, bozor tahlili, keksalar va yangi foydalanuvchilar bilan intervyular.</p>
+                    <p data-lang="uz">Foydalanuvchi muammolarini aniqlash, bozor tahlili, keksalar va yangi foydalanuvchilar bilan intervyular.</p>
+                    <p data-lang="en">Identifying user problems, market analysis, interviews with elderly and new users.</p>
                 </div>
                 <div class="roadmap-card">
                     <div class="roadmap-number">2</div>
                     <h3>Prototype</h3>
-                    <p>Ovozdan matnga konversiya + niyat (intent) aniqlash, faqat bir nechta asosiy to'lov scenariylari uchun. Figma/klikatel prototiplar va kichik fokus-guruh bilan test.</p>
+                    <p data-lang="uz">Ovozdan matnga konversiya + niyat aniqlash, faqat bir nechta asosiy to'lov stsenariylari uchun. Figma/klikabel prototiplar va kichik fokus-guruh bilan test.</p>
+                    <p data-lang="en">Voice-to-text conversion + intent detection, for only a few key payment scenarios. Figma/clickable prototypes and testing with small focus groups.</p>
                 </div>
                 <div class="roadmap-card">
                     <div class="roadmap-number">3</div>
                     <h3>MVP</h3>
-                    <p>Agrobank va asosiy to'lov provayderlari bilan integratsiya. Mobil va veb interfeys, keksalar uchun yirik elementlar, oddiy onboarding.</p>
+                    <p data-lang="uz">Agrobank va asosiy to'lov provayderlari bilan integratsiya. Mobil va veb interfeys, keksalar uchun yirik elementlar, oddiy onboarding.</p>
+                    <p data-lang="en">Integration with Agrobank and major payment providers. Mobile and web interface, large elements for elderly, simple onboarding.</p>
                 </div>
                 <div class="roadmap-card">
                     <div class="roadmap-number">4</div>
                     <h3>Launched</h3>
-                    <p>Pilot loyihani Agrobank ekotizimida ishga tushirish. Foydalanuvchi fikr-mulohazalari asosida iteratsiya, yangi xizmat turlari qo'shish, boshqa bank va xizmatlarga kengaytirish.</p>
+                    <p data-lang="uz">Pilot loyihani Agrobank ekotizimida ishga tushirish. Foydalanuvchi fikr-mulohazalari asosida iteratsiya, yangi xizmat turlari qo'shish, boshqa bank va xizmatlarga kengaytirish.</p>
+                    <p data-lang="en">Launching the pilot project in the Agrobank ecosystem. Iteration based on user feedback, adding new service types, expanding to other banks and services.</p>
                 </div>
             </div>
         </div>
@@ -883,32 +967,46 @@
 
     <section class="implementation">
         <div class="container">
-            <h2>Qanday amalga oshiramiz?</h2>
+            <h2 data-lang="uz">Qanday amalga oshiramiz?</h2>
+            <h2 data-lang="en">How Will We Implement?</h2>
             <div class="impl-content">
                 <div class="impl-grid">
                     <div class="impl-section">
-                        <h3>Etaplar</h3>
+                        <h3 data-lang="uz">Etaplar</h3>
+                        <h3 data-lang="en">Stages</h3>
                         <ul class="impl-list">
-                            <li>1-bosqich: foydalanuvchi tadqiqoti, savollar va ovozli buyruqlarni xaritalash</li>
-                            <li>2-bosqich: ovozdan matnga va matndan niyatni aniqlash uchun AI modellarini tanlash va moslashtirish (Uzbek tilini qo'llab-quvvatlashga alohida e'tibor)</li>
-                            <li>3-bosqich: Agrobank va boshqa to'lov servislarining API'lari bilan xavfsiz integratsiya</li>
-                            <li>4-bosqich: UX soddalashtirish, beta-test, keksalar bilan sinov</li>
-                            <li>5-bosqich: xavfsizlik, fraud-detection va komplayens tekshiruvlari</li>
+                            <li data-lang="uz">1-bosqich: foydalanuvchi tadqiqoti, savollar va ovozli buyruqlarni xaritalash</li>
+                            <li data-lang="en">Stage 1: user research, mapping questions and voice commands</li>
+                            <li data-lang="uz">2-bosqich: ovozdan matnga va matndan niyatni aniqlash uchun AI modellarini tanlash va moslashtirish (O'zbek tilini qo'llab-quvvatlashga alohida e'tibor)</li>
+                            <li data-lang="en">Stage 2: selecting and adapting AI models for voice-to-text and intent detection (special attention to Uzbek language support)</li>
+                            <li data-lang="uz">3-bosqich: Agrobank va boshqa to'lov servislarining API'lari bilan xavfsiz integratsiya</li>
+                            <li data-lang="en">Stage 3: secure integration with Agrobank and other payment services APIs</li>
+                            <li data-lang="uz">4-bosqich: UX soddalashtirish, beta-test, keksalar bilan sinov</li>
+                            <li data-lang="en">Stage 4: UX simplification, beta-testing, testing with elderly</li>
+                            <li data-lang="uz">5-bosqich: xavfsizlik, fraud-detection va komplayens tekshiruvlari</li>
+                            <li data-lang="en">Stage 5: security, fraud-detection and compliance checks</li>
                         </ul>
                     </div>
                     <div class="impl-section">
-                        <h3>Texnologiyalar</h3>
+                        <h3 data-lang="uz">Texnologiyalar</h3>
+                        <h3 data-lang="en">Technologies</h3>
                         <ul class="impl-list">
-                            <li>Ovoz tanish va tabiiy tilni tushunish (AI)</li>
-                            <li>To'lov servislariga xavfsiz ulanish</li>
-                            <li>Biometrik yoki SMS tasdiqlash orqali yakuniy approval</li>
+                            <li data-lang="uz">Ovozni tanish va tabiiy tilni tushunish (AI)</li>
+                            <li data-lang="en">Voice recognition and natural language understanding (AI)</li>
+                            <li data-lang="uz">To'lov servislariga xavfsiz ulanish</li>
+                            <li data-lang="en">Secure connection to payment services</li>
+                            <li data-lang="uz">Biometrik yoki SMS tasdiqlash orqali yakuniy tasdiqlash</li>
+                            <li data-lang="en">Final approval via biometric or SMS confirmation</li>
                         </ul>
                     </div>
                     <div class="impl-section">
-                        <h3>AI vositalari</h3>
+                        <h3 data-lang="uz">AI vositalari</h3>
+                        <h3 data-lang="en">AI Tools</h3>
                         <ul class="impl-list">
-                            <li>Ovozli buyruqlarni tushunadigan, kontektni eslab qoladigan AI yordamchi</li>
-                            <li>Foydalanuvchi xatti-harakatini tahlil qilib, interfeysni soddalashtirishga yordam beradigan analitika</li>
+                            <li data-lang="uz">Ovozli buyruqlarni tushunadigan, kontekstni eslab qoladigan AI yordamchi</li>
+                            <li data-lang="en">AI assistant that understands voice commands and remembers context</li>
+                            <li data-lang="uz">Foydalanuvchi xatti-harakatini tahlil qilib, interfeysni soddalashtirishga yordam beradigan analitika</li>
+                            <li data-lang="en">Analytics that helps simplify the interface by analyzing user behavior</li>
                         </ul>
                     </div>
                 </div>
@@ -918,36 +1016,66 @@
 
     <section>
         <div class="container">
-            <h2>Nega bu loyiha muhim?</h2>
+            <h2 data-lang="uz">Nega bu loyiha muhim?</h2>
+            <h2 data-lang="en">Why Is This Project Important?</h2>
             <div class="importance-content">
-                <p>Raqamli to'lovlar tez rivojlanmoqda, lekin ko'plab odamlar (ayniqsa keksalar) hali ham oflayn navbatlarga majbur. Ular onlayn interfeyslarda adashib qolishadi, xato qilishdan qo'rqishadi va natijada vaqt va energiya yo'qotishadi.</p>
-                <p>Ovozli AI yordamchi raqamli moliyani hamma uchun ochiq va tushunarli qiladi. Texnologiya orqali to'lovlar oson, xavfsiz va ishonchli bo'ladi. Bu nafaqat foydalanuvchilarni qutqaradi, balki butun raqamli ekotizimni yanada samarali qiladi.</p>
-                <p>Agrobank kabi yetakchi banklar bilan hamkorlik bu yechimni tezroq va ishonchli qilib, butun ekotizimga foyda keltiradi. Agrobank O'zbekistonda raqamli moliya va innovatsiyalarni rivojlantirishda eng oldinda turgan bankdir, va bu loyiha uning missiyasiga to'liq mos keladi.</p>
+                <p data-lang="uz">Raqamli to'lovlar tez rivojlanmoqda, lekin ko'plab odamlar (ayniqsa keksalar) hali ham oflayn navbatlarga majbur. Ular onlayn interfeyslarda adashib qolishadi, xato qilishdan qo'rqishadi va natijada vaqt va energiya yo'qotishadi.</p>
+                <p data-lang="en">Digital payments are developing rapidly, but many people (especially the elderly) are still forced to stand in offline queues. They get lost in online interfaces, are afraid of making mistakes, and as a result waste time and energy.</p>
+                <p data-lang="uz">Ovozli AI yordamchi raqamli moliyani hamma uchun ochiq va tushunarli qiladi. Texnologiya orqali to'lovlar oson, xavfsiz va ishonchli bo'ladi. Bu nafaqat foydalanuvchilarni qutqaradi, balki butun raqamli ekotizimni yanada samarali qiladi.</p>
+                <p data-lang="en">Voice AI assistant makes digital finance accessible and understandable for everyone. Through technology, payments become easy, secure and reliable. This not only saves users, but also makes the entire digital ecosystem more efficient.</p>
+                <p data-lang="uz">Agrobank kabi yetakchi banklar bilan hamkorlik bu yechimni tezroq va ishonchli qilib, butun ekotizimga foyda keltiradi. Agrobank O'zbekistonda raqamli moliya va innovatsiyalarni rivojlantirishda eng oldinda turgan bankdir va bu loyiha uning missiyasiga to'liq mos keladi.</p>
+                <p data-lang="en">Partnership with leading banks like Agrobank makes this solution faster and more reliable, benefiting the entire ecosystem. Agrobank is at the forefront of developing digital finance and innovation in Uzbekistan, and this project fully aligns with its mission.</p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>Agrobank AI500 Hackathon uchun tayyorlangan konsept loyihasi. Jamoa: Lazizbek Raximov, Azizbek Fattoev, Azimov Mirvohid.</p>
+            <p data-lang="uz">Agrobank AI500 Hackathon uchun tayyorlangan konsept loyihasi. Jamoa: Lazizbek Raximov, Azizbek Fattoev, Azimov Mirvohid.</p>
+            <p data-lang="en">Concept project prepared for Agrobank AI500 Hackathon. Team: Lazizbek Raximov, Azizbek Fattoev, Azimov Mirvohid.</p>
         </div>
     </footer>
 
     <script>
+        // Language toggle
+        const langBtns = document.querySelectorAll('[data-lang-btn]');
+        const body = document.body;
+        
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang-btn');
+                
+                langBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                if (lang === 'en') {
+                    body.classList.add('lang-en');
+                } else {
+                    body.classList.remove('lang-en');
+                }
+            });
+        });
+
+        // Easter egg
         const azizbekCard = document.getElementById('azizbek-card');
         const easterEgg = document.getElementById('easter-egg');
         const easterText = document.getElementById('easter-text');
-        const defaultText = 'Nega bu loyihani aynan biz qilamiz? Chunki bizda to\'liq ko\'nikma to\'plami, mahalliy bozor bilimlari va xalqaro tajriba birlashgan.';
-        const funText = 'Chunki u o\'zbek 😄';
+        const easterTextEn = document.getElementById('easter-text-en');
+        const defaultTextUz = 'Nega bu loyihani aynan biz qilamiz? Chunki bizda to\'liq ko\'nikma to\'plami, mahalliy bozor bilimlari va xalqaro tajriba birlashgan.';
+        const defaultTextEn = 'Why are we doing this project? Because we combine a complete skill set, local market knowledge and international experience.';
+        const funTextUz = 'Chunki u o\'zbek 😄';
+        const funTextEn = 'Because he is Uzbek 😄';
 
         azizbekCard.addEventListener('mouseenter', () => {
             easterEgg.classList.add('active');
-            easterText.textContent = funText;
+            easterText.textContent = funTextUz;
+            easterTextEn.textContent = funTextEn;
         });
 
         azizbekCard.addEventListener('mouseleave', () => {
             easterEgg.classList.remove('active');
-            easterText.textContent = defaultText;
+            easterText.textContent = defaultTextUz;
+            easterTextEn.textContent = defaultTextEn;
         });
     </script>
 </body>
