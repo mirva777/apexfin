@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/demo",
-      "destination": "https://apex-fin-demo.vercel.app/"
+      "destination": "https://apex-fin-demo.vercel.app/demo"
     },
     {
       "source": "/demo/:path*",
-      "destination": "https://apex-fin-demo.vercel.app/:path*"
+      "destination": "https://apex-fin-demo.vercel.app/demo/:path*"
     }
   ]
 }
