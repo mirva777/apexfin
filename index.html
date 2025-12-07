@@ -201,6 +201,37 @@
             transform: translateY(-2px);
         }
 
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .demo-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--primary);
+            border: none;
+            font-size: 1rem;
+            color: var(--dark);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s backwards;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .demo-btn:hover {
+            background: var(--text);
+            box-shadow: 0 0 70px rgba(0, 240, 255, 0.6), inset 0 0 30px rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
         .hero-visual {
             position: relative;
             height: 650px;
@@ -792,7 +823,13 @@
                     <p class="hero-subtitle" data-lang="en">Voice-controlled AI assistant: finds, fills, and confirms all your payments for you.</p>
                     <p class="hero-desc" data-lang="uz">Keksalar va birinchi marta onlayn to'lov qilayotganlar uchun eng oson yechim.</p>
                     <p class="hero-desc" data-lang="en">The easiest solution for elderly people and first-time online payment users.</p>
-                    <span class="hero-badge">Agrobank AI500 Hackathon</span>
+                    <div class="hero-buttons">
+                        <a href="https://binaryhood.uz/demo" class="demo-btn" target="_blank" rel="noopener noreferrer">
+                            <span data-lang="uz">Demo ko'rish</span>
+                            <span data-lang="en">View Demo</span>
+                        </a>
+                        <span class="hero-badge">Agrobank AI500 Hackathon</span>
+                    </div>
                 </div>
                 <div class="hero-visual">
                     <div class="floating-card">
